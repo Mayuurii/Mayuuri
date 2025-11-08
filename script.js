@@ -1,20 +1,20 @@
-// Sélectionne la carte
-const card = document.querySelector('.card');
+document.addEventListener("DOMContentLoaded", () => {
+  const card = document.querySelector(".card");
 
-// Écoute le mouvement de la souris
-card.addEventListener('mousemove', (e) => {
-  const rect = card.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
+  if (!card) return; // sécurité si la carte n'existe pas
 
-  // Calcule la rotation
-  const rotateY = ((x / rect.width) - 0.5) * 20;
-  const rotateX = ((y / rect.height) - 0.5) * -20;
+  card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-  card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-});
+    const rotateY = ((x / rect.width) - 0.5) * 20;
+    const rotateX = ((y / rect.height) - 0.5) * -20;
 
-// Quand la souris sort → reset
-card.addEventListener('mouseleave', () => {
-  card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+  });
 });
