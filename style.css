@@ -1,92 +1,96 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
-
+/* --- RESET --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
+/* --- FOND --- */
 body {
+  background-image: url("https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1470&q=80");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at top left, #151515, #000);
-  color: white;
   overflow: hidden;
+  position: relative;
 }
 
-/* Effet de fond animé */
-.background {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, #ff007a, #00fff0, #5f00ff);
-  background-size: 400% 400%;
-  animation: gradientMove 10s ease infinite;
-  opacity: 0.15;
+/* --- LÉGER FILTRE FLOU --- */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
   z-index: 0;
 }
 
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Carte principale */
+/* --- CARTE (EFFET GLASS) --- */
 .card {
   position: relative;
   z-index: 1;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
-  padding: 40px;
+  padding: 40px 60px;
   text-align: center;
+  color: #fff;
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-  width: 320px;
-  animation: float 3s ease-in-out infinite;
+  animation: fadeIn 1s ease-in-out;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
+/* --- AVATAR --- */
 .avatar {
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
-  border: 2px solid #fff;
-  margin-bottom: 15px;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
+/* --- TITRE --- */
 h1 {
-  font-size: 1.6em;
+  font-size: 2em;
+  letter-spacing: 2px;
   margin-bottom: 10px;
 }
 
-.bio {
-  font-weight: 300;
-  font-size: 0.9em;
-  margin-bottom: 25px;
-  color: #ccc;
+/* --- ABOUT ME --- */
+.about {
+  font-size: 1.1em;
+  opacity: 0.85;
+  max-width: 300px;
+  margin: 0 auto;
 }
 
-.links a {
-  display: block;
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 12px;
-  text-decoration: none;
-  color: white;
-  background: rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
+/* --- EFFET D'APPARITION --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+
+    .card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transform-style: preserve-3d;
 }
 
-.links a:hover {
-  background: #00fff0;
-  color: #000;
-  transform: scale(1.05);
+.card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+  }
 }
