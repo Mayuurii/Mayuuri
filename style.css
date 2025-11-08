@@ -10,6 +10,11 @@ body {
 }
 
 
+body {
+  font-family: "Curse of the Zombie", sans-serif;
+}
+
+
 /* === CONFIG DE BASE === */
 * {
   margin: 0;
@@ -22,7 +27,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url('assets/BACKGROUND.gif') center center / cover no-repeat fixed;
+  background: url('BACKGROUND.gif') center center / cover no-repeat fixed;
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
 }
