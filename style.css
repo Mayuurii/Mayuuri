@@ -1,73 +1,103 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap');
+@font-face {
+  font-family: "Curse of the Zombie";
+  src: url("assets/fonts/Curse of the Zombie.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
+body {
+  font-family: "Curse of the Zombie", sans-serif;
+}
+
+
+/* === CONFIG DE BASE === */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Urbanist', sans-serif;
 }
 
-body, html {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: #000;
-}
-
-/* --- FOND --- */
-.background {
-  position: relative;
-  width: 100%;
+body {
   height: 100vh;
-  background: url('https://i.pinimg.com/originals/3c/4e/6a/3c4e6a86dbde92d6a5c2781f943f4d16.jpg') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('assets/BACKGROUND.gif') center center / cover no-repeat fixed;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
 }
 
-/* --- PARTICULES --- */
-#particles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* --- CARTE --- */
-.card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 420px;
-  padding: 40px 50px;
-  background: rgba(255, 255, 255, 0.07);
+/* === CARTE PRINCIPALE === */
+#card {
+  position: relative;
+  width: 400px;
+  height: 500px;
+  background: rgba(20, 20, 20, 0.7);
   border-radius: 20px;
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transform-style: preserve-3d;
+  transform-origin: center;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  will-change: transform;
   text-align: center;
-  color: white;
-  backdrop-filter: blur(8px);
-  transition: transform 0.2s ease;
+  padding: 40px 20px;
+  color: #fff;
 }
 
-.card:hover {
-  transform: translate(-50%, -50%) rotateY(4deg) rotateX(-4deg) scale(1.02);
-}
-
+/* === AVATAR === */
 .avatar {
   width: 130px;
   height: 130px;
-  border-radius: 20px;
+  border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-h1 {
+/* === NOM + SOUS-TEXTE === */
+.name {
   font-size: 28px;
   font-weight: 700;
   letter-spacing: 1px;
+  margin-bottom: 10px;
 }
 
-p {
-  font-size: 16px;
-  color: #ccc;
-  margin-top: 6px;
+.subtitle {
+  font-size: 15px;
+  font-weight: 300;
+  opacity: 0.85;
+}
+
+/* === EFFET D’OMBRE DYNAMIQUE (AJOUT VISUEL) === */
+#card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.08), transparent 60%);
+  pointer-events: none;
+  transition: background-position 0.2s ease;
+}
+
+/* === ICÔNES (si tu veux en bas) === */
+.icons {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 25px;
+}
+
+.icons i {
+  font-size: 24px;
+  color: white;
+  opacity: 0.8;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.icons i:hover {
+  transform: scale(1.2);
+  opacity: 1;
 }

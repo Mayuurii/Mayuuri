@@ -1,52 +1,40 @@
-// --- PARTICULES (neige/pluie lente) ---
-const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d');
+const card = document.getElementById('card');
+const MAX_ROT = 20;
+const SCALE = 1.05;
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+card.addEventListener('mousemove', (e) => {
+  const rect = card.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
 
-let particles = [];
+  // Position relative au centre
+  const x = e.clientX - centerX;
+  const y = e.clientY - centerY;
 
-for (let i = 0; i < 100; i++) {
-  particles.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 2 + 1,
-    d: Math.random() * 1
-  });
-}
+  // Normalisation entre -1 et 1
+  const percentX = x / (rect.width / 2);
+  const percentY = y / (rect.height / 2);
 
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "rgba(255,255,255,0.9)";
-  ctx.beginPath();
-  for (let i = 0; i < particles.length; i++) {
-    const p = particles[i];
-    ctx.moveTo(p.x, p.y);
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
-  }
-  ctx.fill();
-  update();
-}
+  // Application de la rotation inversée pour le réalisme
+  const rotateY = percentX * MAX_ROT;
+  const rotateX = -percentY * MAX_ROT;
 
-let angle = 0;
+  card.style.transform = `
+    perspective(800px)
+    rotateX(${rotateX}deg)
+    rotateY(${rotateY}deg)
+    scale(${SCALE})
+  `;
+  card.style.transition = 'transform 0.05s ease-out';
+});
 
-function update() {
-  angle += 0.01;
-  for (let i = 0; i < particles.length; i++) {
-    const p = particles[i];
-    p.y += Math.cos(angle + p.d) + 1 + p.r / 2;
-    p.x += Math.sin(angle) * 0.5;
-
-    if (p.y > canvas.height) {
-      particles[i] = {
-        x: Math.random() * canvas.width,
-        y: 0,
-        r: p.r,
-        d: p.d
-      };
-    }
-  }
-}
-
-setInterval(draw, 33);
+card.addEventListener('mouseleave', () => {
+  card.style.transform = `
+    perspective(800px)
+    rotateX(0deg)
+    rotateY(0deg)
+    scale(1)
+  `;
+  card.style.transition = 'transform 0.3s ease';
+});
+``
