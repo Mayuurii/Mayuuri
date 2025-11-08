@@ -1,20 +1,52 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const card = document.querySelector(".card");
-  if (!card) return;
+// --- PARTICULES (neige/pluie lente) ---
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
 
-  card.addEventListener("mousemove", (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-    // Sens naturel : la carte suit le curseur
-    const rotateY = ((x / rect.width) - 0.5) * -12; // moins violent pour grand format
-    const rotateX = ((y / rect.height) - 0.5) * 10;
+let particles = [];
 
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+for (let i = 0; i < 100; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 2 + 1,
+    d: Math.random() * 1
   });
+}
 
-  card.addEventListener("mouseleave", () => {
-    card.style.transform = "rotateX(0deg) rotateY(0deg)";
-  });
-});
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "rgba(255,255,255,0.9)";
+  ctx.beginPath();
+  for (let i = 0; i < particles.length; i++) {
+    const p = particles[i];
+    ctx.moveTo(p.x, p.y);
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
+  }
+  ctx.fill();
+  update();
+}
+
+let angle = 0;
+
+function update() {
+  angle += 0.01;
+  for (let i = 0; i < particles.length; i++) {
+    const p = particles[i];
+    p.y += Math.cos(angle + p.d) + 1 + p.r / 2;
+    p.x += Math.sin(angle) * 0.5;
+
+    if (p.y > canvas.height) {
+      particles[i] = {
+        x: Math.random() * canvas.width,
+        y: 0,
+        r: p.r,
+        d: p.d
+      };
+    }
+  }
+}
+
+setInterval(draw, 33);

@@ -1,140 +1,73 @@
-/* ===== base ===== */
-:root{
-  --card-w: 720px;    /* largeur de la carte (agrandir ici) */
-  --card-radius: 22px;
-  --glass: rgba(255,255,255,0.06);
-  --muted: rgba(255,255,255,0.8);
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Urbanist', sans-serif;
 }
 
-*{box-sizing:border-box;margin:0;padding:0;font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
-
-/* background (image fixe) */
-body{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background-image: url("https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1600&q=80");
-  background-size:cover;
-  background-position:center;
-  background-attachment: fixed;
-  color:#fff;
-  padding: 40px;
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
 }
 
-/* ===== carte ===== */
-.card{
-  width: var(--card-w);
-  max-width: calc(100% - 48px);
-  border-radius: var(--card-radius);
-  background: var(--glass);
-  color: #fff;
-  padding: 44px;
-  box-shadow: 0 18px 60px rgba(0,0,0,0.55);
-  transition: transform 0.12s linear;
-  transform-style: preserve-3d;
-  backdrop-filter: none; /* pas de blur */
+/* --- FOND --- */
+.background {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url('https://i.pinimg.com/originals/3c/4e/6a/3c4e6a86dbde92d6a5c2781f943f4d16.jpg') center/cover no-repeat;
 }
 
-/* header (avatar + titre) */
-.header{
-  display:flex;
-  gap: 26px;
-  align-items:center;
-  margin-bottom: 28px;
+/* --- PARTICULES --- */
+#particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.avatar{
-  width: 160px;   /* avatar agrandi */
-  height: 160px;
-  border-radius: 18px; /* carré arrondi comme sur ton image */
+/* --- CARTE --- */
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 420px;
+  padding: 40px 50px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+  text-align: center;
+  color: white;
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translate(-50%, -50%) rotateY(4deg) rotateX(-4deg) scale(1.02);
+}
+
+.avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 20px;
   object-fit: cover;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
-  border: 3px solid rgba(255,255,255,0.08);
+  margin-bottom: 15px;
 }
 
-/* titre principal */
-.title h1{
-  font-size: 36px;   /* titre plus grand */
-  letter-spacing: 2px;
-  margin-bottom: 6px;
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
-.subtitle{
+
+p {
   font-size: 16px;
-  opacity: 0.9;
-  color: var(--muted);
-}
-
-/* about */
-.about{
-  background: rgba(255,255,255,0.03);
-  border-radius: 14px;
-  padding: 20px 22px;
-  margin-bottom: 22px;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
-}
-.about h2{
-  font-size:18px;
-  margin-bottom:8px;
-}
-.about p{
-  color: rgba(255,255,255,0.9);
-  font-size: 15px;
-  line-height:1.45;
-}
-
-/* blocks (trois gros blocs arrondis comme la photo) */
-.blocks{
-  display:flex;
-  flex-direction:column;
-  gap: 18px;
+  color: #ccc;
   margin-top: 6px;
-}
-
-/* each block */
-.block{
-  display:flex;
-  justify-content: space-between;
-  align-items:center;
-  padding: 18px;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.06);
-  min-height: 78px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.45);
-}
-
-/* left side mini avatar + text */
-.block-left{
-  display:flex;
-  gap:14px;
-  align-items:center;
-}
-.mini-avatar{
-  width:56px;
-  height:56px;
-  border-radius:10px;
-  background: linear-gradient(135deg, #9fb, #69c);
-  box-shadow: inset 0 0 10px rgba(255,255,255,0.03);
-}
-.mini-text{
-  font-weight:600;
-  letter-spacing:1px;
-  font-size:15px;
-  color: rgba(255,255,255,0.95);
-}
-
-/* right small badge placeholder */
-.block-right{
-  width:64px;
-  height:48px;
-  border-radius:10px;
-  background: rgba(255,255,255,0.03);
-}
-
-/* responsive */
-@media (max-width:820px){
-  :root{ --card-w: 94vw; }
-  .avatar{ width:120px;height:120px;}
-  .title h1{ font-size: 28px;}
 }
