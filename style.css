@@ -1,90 +1,165 @@
-/* === FONT === */
 @font-face {
-  font-family: "Hartsinger";
-  src: url("assets/Hartsinger.ttf") format("truetype");
+    font-family: 'Hartsinger';
+    src: url('assets/Hartsinger.ttf');
 }
 
-
-/* === INTRO === */
-#intro {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(20px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999999;
-  cursor: pointer;
-  transition: opacity 0.6s ease;
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Hartsinger', sans-serif;
 }
 
-#intro.fade-out {
-  opacity: 0;
+.background {
+    position: fixed;
+    inset: 0;
+    background: url("BACKGROUND.gif") center center/cover no-repeat;
+    z-index: -2;
 }
 
-.intro-text {
-  font-family: "Hartsinger", sans-serif;
-  font-size: 100px;
-  color: white;
-  user-select: none;
+.home-screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    background: rgba(0,0,0,0.35); /* ✅ gris transparent */
+    transition: opacity .5s ease, transform .5s ease;
+    cursor: pointer; /* ✅ le clic partout */
 }
 
-
-/* === RESET === */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.question-mark {
+    font-size: 200px;
+    color: white;
+    opacity: .9;
+    cursor: pointer;
+    user-select: none;
+    transition: transform .3s ease;
 }
 
-/* === BACKGROUND === */
-body {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: url('BACKGROUND.gif') center center / cover no-repeat fixed;
-  overflow: hidden;
+.question-mark:hover {
+    transform: scale(1.05);
 }
 
-/* === CARD === */
-#card {
-  position: relative;
-  width: 400px;
-  height: 500px;
-  background: rgba(20, 20, 20, 0.7);
-  border-radius: 20px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  transform-style: preserve-3d;
-  transform-origin: center;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-  text-align: center;
-  padding: 40px 20px;
-  color: #fff;
+.card-container {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: scale(.8);
+    transition: opacity .5s ease, transform .5s ease;
 }
 
-/* === AVATAR === */
+.card-container.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.hidden {
+    display: none;
+}
+
+.card {
+    width: 380px;
+    position: relative;
+    padding: 25px;
+    background: rgba(20,20,20,0.65);
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    text-align: center;
+    color: white;
+    box-shadow: 0px 25px 70px rgba(0,0,0,0.4);
+    transition: transform .07s linear; /* tilt rapide */
+}
+
 .avatar {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 20px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    object-fit: cover;
 }
 
-/* === TEXT === */
 h1 {
-  font-size: 30px;
-  margin-bottom: 10px;
+    font-size: 60px;
+    margin: 5px 0 0 0;
 }
 
-p {
-  font-size: 18px;
-  opacity: 0.9;
+h2 {
+    font-size: 40px;
+    margin-top: 0;
+    opacity: .8;
 }
 
-#card, #card h1, #card p {
-  font-family: "Hartsinger", sans-serif;
+/* MINI PLAYER */
+.player {
+    margin-top: 30px;
+    padding: 12px 18px;
+    background: rgba(40,40,40,0.55);
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.player-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.music-icon {
+    font-size: 25px;
+}
+
+.music-title {
+    font-size: 17px;
+}
+
+.play-button {
+    font-size: 28px;
+    cursor: default;
+    opacity: .7;
+}
+
+.socials-bottom {
+    margin-top: 22px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.social-icon {
+    width: 38px;
+    height: 38px;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    filter: drop-shadow(0 0 6px rgba(255,255,255,0.7));
+    transition: transform .2s ease, filter .2s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 12px rgba(255,255,255,1));
+}
+
+/* icons */
+.roblox {
+    background-image: url("assets/roblox.png");
+}
+
+.twitter {
+    background-image: url("assets/twitter.png");
+}
+
+.konnect {
+    background-image: url("assets/konnect.png");
+}
+
+

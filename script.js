@@ -1,50 +1,71 @@
-/* === INTRO CLICK === */
-const intro = document.getElementById("intro");
+const homeScreen = document.getElementById("home-screen");
+const cardContainer = document.getElementById("card-container");
+const card = document.querySelector(".card");
+const music = document.getElementById("music");
 
-// Fade + remove
-intro.addEventListener("click", () => {
-  intro.classList.add("fade-out");
+// ➤ CLICK SUR TOUTE LA PAGE D'ACCUEIL
+homeScreen.addEventListener("click", () => {
+    homeScreen.style.opacity = "0";
+    homeScreen.style.transform = "scale(0.9)";
 
-  setTimeout(() => {
-    intro.style.display = "none";
-  }, 600);
+    setTimeout(() => {
+        homeScreen.style.display = "none";
+        cardContainer.classList.remove("hidden");
+        setTimeout(() => {
+            cardContainer.classList.add("show");
+        }, 20);
+    }, 500);
+
+    music.play().catch(() => {
+        console.log("Autoplay bloqué, joué après interaction.");
+    });
 });
 
+// ➤ TILT 3D FLUIDE ET PROFOND
+// ============================
+// TILT 3D ULTRA FLUID
+// ============================
+let targetRotX = 0;
+let targetRotY = 0;
 
-/* === CARD 3D === */
-const card = document.getElementById('card');
-const MAX_ROT = 20;
-const SCALE = 1.05;
-
-card.addEventListener('mousemove', (e) => {
+card.addEventListener("mousemove", (e) => {
   const rect = card.getBoundingClientRect();
-  const centerX = rect.left + rect.width / 2;
-  const centerY = rect.top + rect.height / 2;
 
-  const x = e.clientX - centerX;
-  const y = e.clientY - centerY;
+  const x = e.clientX - (rect.left + rect.width / 2);
+  const y = e.clientY - (rect.top + rect.height / 2);
 
   const percentX = x / (rect.width / 2);
   const percentY = y / (rect.height / 2);
 
-  const rotateY = percentX * MAX_ROT;
-  const rotateX = -percentY * MAX_ROT;
-
-  card.style.transform = `
-    perspective(800px)
-    rotateX(${rotateX}deg)
-    rotateY(${rotateY}deg)
-    scale(${SCALE})
-  `;
-  card.style.transition = 'transform 0.05s ease-out';
+  // intensité + profondeur
+  targetRotY = percentX * 10;  // + profond et + rapide
+  targetRotX = -percentY * 10;
 });
 
-card.addEventListener('mouseleave', () => {
-  card.style.transform = `
-    perspective(800px)
-    rotateX(0deg)
-    rotateY(0deg)
-    scale(1)
-  `;
-  card.style.transition = 'transform 0.3s ease';
+card.addEventListener("mouseleave", () => {
+  targetRotX = 0;
+  targetRotY = 0;
 });
+
+// animation ultra smooth
+function animateTilt() {
+  let currentX = parseFloat(card.dataset.rotX || 0);
+  let currentY = parseFloat(card.dataset.rotY || 0);
+
+  // interpolation fluide
+  currentX += (targetRotX - currentX) * 0.05;
+  currentY += (targetRotY - currentY) * 0.05;
+
+  card.dataset.rotX = currentX;
+  card.dataset.rotY = currentY;
+
+  card.style.transform =
+    `perspective(1200px)
+     rotateX(${currentX}deg)
+     rotateY(${currentY}deg)
+     scale(1)`; // scale neutre, pas d'étirement
+
+  requestAnimationFrame(animateTilt);
+}
+
+animateTilt();

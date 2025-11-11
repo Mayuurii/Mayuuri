@@ -1,30 +1,52 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MyBio</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayuuri Card</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <!-- ÉCRAN INTRO -->
-  <div id="intro">
-    <div class="intro-text">?</div>
-  </div>
+<div id="background" class="background"></div>
 
-  <!-- CONTENU PRINCIPAL -->
-  <div class="background">
-    <canvas id="particles"></canvas>
-    <div class="card" id="card">
-      <img src="https://i.pinimg.com/736x/7b/6a/82/7b6a82d468185283fd92182e32d870b9.jpg" alt="avatar" class="avatar">
-      <h1>MAYUURI</h1>
-      <p>Joueuse Valorant</p>
-    </div>
-  </div>
+<!-- PAGE ACCUEIL -->
+<div id="home-screen" class="home-screen">
+    <div class="question-mark">?</div>
+</div>
 
-  <script src="script.js"></script>
+<!-- CARD -->
+<div id="card-container" class="card-container hidden">
+    <div class="card">
 
+        <img src="assets/pfp.jpg" class="avatar">
+
+        <h1>MAYUURI</h1>
+        <h2>Joueuse VALORANT</h2>
+
+        <!-- MINI PLAYER -->
+        <div class="player">
+            <div class="player-left">
+                <span class="music-icon">♪</span>
+                <span class="music-title">Fever — Buckshot, fakemink</span>
+            </div>
+            <div class="player-right">
+                <div class="play-button">▶</div>
+            </div>
+        </div>
+
+        <!-- ✅ SOCIALS BON EMPLACEMENT -->
+        <div class="socials-bottom">
+            <a href="https://www.roblox.com/users/3171956248/profile" target="_blank" class="social-icon roblox"></a>
+            <a href="https://x.com/MayuuriFPS" target="_blank" class="social-icon twitter"></a>
+            <a href="#" target="_blank" class="social-icon konnect"></a>
+        </div>
+
+    </div> <!-- ✅ fermeture de la card ici -->
+</div>
+
+<audio id="music" src="assets/Fever.mp3"></audio>
+
+<script src="script.js"></script>
 </body>
 </html>
