@@ -1,8 +1,9 @@
 /* === FONT === */
 @font-face {
-  font-family: "Curse of the Zombie";
-  src: url("assets/fonts/CurseoftheZombie.ttf") format("truetype");
+  font-family: "Hartsinger";
+  src: url("assets/Hartsinger.ttf") format("truetype");
 }
+
 
 /* === INTRO === */
 #intro {
@@ -23,7 +24,7 @@
 }
 
 .intro-text {
-  font-family: "Curse of the Zombie", sans-serif;
+  font-family: "Hartsinger", sans-serif;
   font-size: 100px;
   color: white;
   user-select: none;
@@ -82,4 +83,8 @@ h1 {
 p {
   font-size: 18px;
   opacity: 0.9;
+}
+
+#card, #card h1, #card p {
+  font-family: "Hartsinger", sans-serif;
 }
