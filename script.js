@@ -38,3 +38,11 @@ card.addEventListener('mouseleave', () => {
   card.style.transition = 'transform 0.3s ease';
 });
 ``
+
+// INTRO CLICK
+const intro = document.getElementById("intro");
+
+intro.addEventListener("click", () => {
+  intro.classList.add("fade-out");
+});
+

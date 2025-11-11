@@ -15,6 +15,30 @@ body {
   font-family: "Curse of the Zombie", sans-serif;
 }
 
+/* === ÉCRAN D'INTRO === */
+#intro {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.6s ease;
+}
+
+.intro-text {
+  font-size: 80px;
+  color: white;
+  font-family: "Curse of the Zombie", sans-serif;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+#intro.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
 
 /* === CONFIG DE BASE === */
 * {
