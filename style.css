@@ -1,63 +1,53 @@
+/* === FONT === */
 @font-face {
   font-family: "Curse of the Zombie";
   src: url("assets/fonts/CurseoftheZombie.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
 }
 
-body {
-  font-family: "Curse of the Zombie", sans-serif;
-}
-
-
-
-body {
-  font-family: "Curse of the Zombie", sans-serif;
-}
-
-/* === ÉCRAN D'INTRO === */
+/* === INTRO === */
 #intro {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.75);
+  background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(20px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+  z-index: 999999;
+  cursor: pointer;
   transition: opacity 0.6s ease;
 }
 
-.intro-text {
-  font-size: 80px;
-  color: white;
-  font-family: "Curse of the Zombie", sans-serif;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-}
 #intro.fade-out {
   opacity: 0;
-  pointer-events: none;
+}
+
+.intro-text {
+  font-family: "Curse of the Zombie", sans-serif;
+  font-size: 100px;
+  color: white;
+  user-select: none;
 }
 
 
-/* === CONFIG DE BASE === */
+/* === RESET === */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* === BACKGROUND === */
 body {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background: url('BACKGROUND.gif') center center / cover no-repeat fixed;
-  font-family: 'Poppins', sans-serif;
   overflow: hidden;
 }
 
-/* === CARTE PRINCIPALE === */
+/* === CARD === */
 #card {
   position: relative;
   width: 400px;
@@ -69,7 +59,6 @@ body {
   transform-style: preserve-3d;
   transform-origin: center;
   transition: transform 0.2s ease, box-shadow 0.3s ease;
-  will-change: transform;
   text-align: center;
   padding: 40px 20px;
   color: #fff;
@@ -82,52 +71,15 @@ body {
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 20px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-/* === NOM + SOUS-TEXTE === */
-.name {
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: 1px;
+/* === TEXT === */
+h1 {
+  font-size: 30px;
   margin-bottom: 10px;
 }
 
-.subtitle {
-  font-size: 15px;
-  font-weight: 300;
-  opacity: 0.85;
-}
-
-/* === EFFET D’OMBRE DYNAMIQUE (AJOUT VISUEL) === */
-#card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.08), transparent 60%);
-  pointer-events: none;
-  transition: background-position 0.2s ease;
-}
-
-/* === ICÔNES (si tu veux en bas) === */
-.icons {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 25px;
-}
-
-.icons i {
-  font-size: 24px;
-  color: white;
-  opacity: 0.8;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.icons i:hover {
-  transform: scale(1.2);
-  opacity: 1;
+p {
+  font-size: 18px;
+  opacity: 0.9;
 }
